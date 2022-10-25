@@ -2,6 +2,7 @@ add_library(
         webserver_net
         OBJECT
         connection.cc
+        handler.cc
 )
 
 set(ALL_OBJECT_FILES

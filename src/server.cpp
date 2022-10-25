@@ -9,5 +9,6 @@
 int main() {
     std::cout << "Hello, World" << std::endl;
     LOG_INFO("info test");
+    LOG_TRACE("trace test");
     return 0;
 }
