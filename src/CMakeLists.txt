@@ -21,6 +21,6 @@ target_link_libraries(webserver ${WEBSERVER_LIBS})
 
 target_include_directories(webserver PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include> $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-add_executable(server server.cpp)
+add_executable(server server.cpp include/http/http.h)
 
 target_link_libraries(server webserver)
