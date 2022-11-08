@@ -3,4 +3,4 @@
 //
 #include "http/http.h"
 
-RequestPacket::RequestPacket() : HTTPPacket() {}
+RequestPacket::RequestPacket(char *data) : HTTPPacket(data) {}

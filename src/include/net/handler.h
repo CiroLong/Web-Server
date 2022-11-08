@@ -7,37 +7,37 @@
 #include "connection.h"
 #include "net/connection.h"
 
-#define BUF_MAX_SIZE 1024
+// 10k ?
+#define BUF_MAX_SIZE 1024 * 10
 
 class TCPConnection;
 
 class TCPHandler {
 public:
-    TCPHandler();
+  TCPHandler();
 
-    ~TCPHandler();
+  ~TCPHandler();
 
-    size_t write(std::string &s);
+  size_t write(std::string &s);
 
-    size_t write(const char *str, size_t len);
+  size_t write(const char *str, size_t len);
 
-    size_t read(char *buf, size_t n = BUF_MAX_SIZE);
-
+  size_t read(char *buf, size_t n = BUF_MAX_SIZE);
 
 public:
-    TCPConnection *tcp_conn() { return tcp_conn_; }
+  TCPConnection *tcp_conn() { return tcp_conn_; }
 
-    int client_sock() { return client_sock_; }
+  int client_sock() { return client_sock_; }
 
-    const std::string &client_ip() { return client_ip_; }
+  const std::string &client_ip() { return client_ip_; }
 
-    int client_port() { return client_port_; }
+  int client_port() { return client_port_; }
 
 private:
-    friend class TCPConnection;
+  friend class TCPConnection;
 
-    TCPConnection *tcp_conn_;
-    int client_sock_;
-    std::string client_ip_;
-    int client_port_;
+  TCPConnection *tcp_conn_;
+  int client_sock_;
+  std::string client_ip_;
+  int client_port_;
 };

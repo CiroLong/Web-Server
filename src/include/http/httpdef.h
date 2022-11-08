@@ -23,7 +23,8 @@ enum RequestMethod {
   OPTIONS,
   HEAD,
   TRACE,
-  CONNECT
+  CONNECT,
+  UNDEFINED
 };
 
 typedef std::unordered_map<std::string, std::string> Header;

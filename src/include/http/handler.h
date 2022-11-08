@@ -6,11 +6,14 @@
 #include "net/connection.h"
 #include "net/handler.h"
 
-class HTTPConnection {
+class HTTPHandler {
 public:
+  HTTPHandler(TCPHandler *tcp_handler);
+  ~HTTPHandler();
+
+  void handle();
 
 private:
-    TCPConnection *tcp_conn_;
-    TCPHandler *tcp_handler_;
+  TCPHandler *tcp_handler_;
+  TCPConnection *tcp_conn_;
 };
-

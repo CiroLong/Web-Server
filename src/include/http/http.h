@@ -15,11 +15,14 @@ class ResponsePacket;
 class HTTPPacket {
 public:
   HTTPPacket() = default;
+  explicit HTTPPacket(char *data) : data_(data) {}
 
   ~HTTPPacket() { delete data_; };
 
   Header &header() { return header_; }
   const char *body() { return body_; }
+
+  void set_body(char *body) { body_ = body; }
 
 protected:
   char *data_; // Packet hold the src data of http data
@@ -29,14 +32,16 @@ protected:
 
 class RequestPacket : public HTTPPacket {
 public:
-  RequestPacket();
+  RequestPacket(char *data);
   ~RequestPacket() = default;
 
   static RequestPacket *parse_request(char *buf) {
-    RequestPacket *rp = new RequestPacket();
+    auto *rp = new RequestPacket(buf);
     parse_http(buf, rp);
     return rp;
   }
+
+  friend int parse_http(char *buffer, RequestPacket *rp);
 
 private:
   RequestMethod method_;
@@ -48,10 +53,13 @@ private:
 
 class ResponsePacket : public HTTPPacket {
 public:
+  friend class HTTPHandler;
+  friend int parse_http(char *buffer, RequestPacket *rp);
+
 private:
+  std::string version_;
   StatusCode code_;
   std::string explain_;
-  std::string version_;
   // Header
   // body
 };
