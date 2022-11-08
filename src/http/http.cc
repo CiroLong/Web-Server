@@ -3,11 +3,4 @@
 //
 #include "http/http.h"
 
-HTTPPacket::HTTPPacket() {
-
-}
-
-HTTPPacket::~HTTPPacket() {
-
-}
-
+RequestPacket::RequestPacket() : HTTPPacket() {}

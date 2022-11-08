@@ -4,6 +4,7 @@
 
 #include "http/parser/parser.h"
 
-int parse_http(char *buf, FirstLine &first_line_, Header &header_, char *&body_) {
-    
+int parse_http(char *buf, RequestPacket *rp) {
+
+
 }

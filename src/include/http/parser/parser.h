@@ -4,7 +4,13 @@
 
 #pragma once
 
+#ifndef HTTP_MAX_HEADER_SIZE
+#define HTTP_MAX_HEADER_SIZE (80 * 1024)
+#endif
+
 #include "http/http.h"
 #include "http/httpdef.h"
 
-int parse_http(char *buf, FirstLine &first_line_, Header &header_, char *&body_);
+class RequestPacket;
+
+int parse_http(char *buf, RequestPacket *rp);
