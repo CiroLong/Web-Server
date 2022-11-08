@@ -17,7 +17,7 @@ public:
   HTTPPacket() = default;
   explicit HTTPPacket(char *data) : data_(data) {}
 
-  ~HTTPPacket() { delete data_; };
+  ~HTTPPacket() { delete[] data_; };
 
   Header &header() { return header_; }
   const char *body() { return body_; }
@@ -42,6 +42,7 @@ public:
   }
 
   friend int parse_http(char *buffer, RequestPacket *rp);
+  friend class HTTPHandler;
 
 private:
   RequestMethod method_;
@@ -54,7 +55,7 @@ private:
 class ResponsePacket : public HTTPPacket {
 public:
   friend class HTTPHandler;
-  friend int parse_http(char *buffer, RequestPacket *rp);
+  friend int parse_into_http_header(char *buffer, ResponsePacket *rp);
 
 private:
   std::string version_;

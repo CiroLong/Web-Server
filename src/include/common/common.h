@@ -10,4 +10,6 @@
 
 #define RESPONSE_BUF_MAX_SIZE 1024 * 10
 
+#define FILE_MAX_SIZE 1024 * 10
+
 #endif // WEBSERVER_COMMON_H

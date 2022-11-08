@@ -12,5 +12,8 @@
 #include "http/httpdef.h"
 
 class RequestPacket;
+class ResponsePacket;
 
 int parse_http(char *buf, RequestPacket *rp);
+
+int parse_into_http_header(char *buffer, ResponsePacket *rp);

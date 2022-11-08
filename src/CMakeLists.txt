@@ -4,18 +4,20 @@ add_subdirectory(util)
 add_subdirectory(net)
 add_subdirectory(http)
 add_subdirectory(common)
+add_subdirectory(epoll)
+add_subdirectory(config)
 
 
 # add_libray must have files
 add_library(webserver STATIC ${ALL_OBJECT_FILES})
 
 set(WEBSERVER_LIBS
+        webserver_epoll
+        webserver_config
         webserver_util
         webserver_net
         webserver_http
         webserver_common
-        webserver_epoll
-        webserver_config
         )
 
 # target_link_libraries

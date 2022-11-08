@@ -94,3 +94,21 @@ int parse_http(char *buffer, RequestPacket *rp) {
   rp->body_ = buffer + offset;
   return 0;
 }
+
+int parse_into_http_header(char *buffer, ResponsePacket *rp) {
+  // HTTP/1.1 200 OK\r\n
+  int offset = 0;
+  int len = 0;
+  len = sprintf(buffer, "%s %d %s\r\n", rp->version_.c_str(), rp->code_,
+                rp->explain_.c_str());
+  offset += len;
+
+  for (auto &header : rp->header_) {
+    len = sprintf(buffer + offset, "%s: %s\r\n", header.first.c_str(),
+                  header.second.c_str());
+    offset += len;
+  }
+  sprintf(buffer + offset, "\r\n");
+  offset += 2;
+  return offset;
+}

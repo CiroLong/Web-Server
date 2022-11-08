@@ -3,7 +3,7 @@
 //
 
 #include "common/logger.h"
-#include "config/config.h"
+#include "config/config.cc"
 #include "http/handler.h"
 #include "http/http.h"
 #include "net/connection.h"
@@ -12,14 +12,15 @@
 int main() {
   LOG_INFO("WEB_SERVER START!!!");
 
-  setConfig("127.0.0.1", 8080, ".");
+  setConfig("127.0.0.1", 8080, "../../etc");
 
-  auto *tcp_conn = new TCPConnection(C.IP, C.port);
+  auto *tcp_conn = new TCPConnection(GrobalConfig.IP, GrobalConfig.port);
   tcp_conn->listen();
   TCPHandler *handler;
   while ((handler = tcp_conn->accept()) != nullptr) {
     HTTPHandler *hHandler = new HTTPHandler(handler);
     hHandler->handle();
+    delete hHandler;
   }
 
   LOG_INFO("EXIT!!!");
