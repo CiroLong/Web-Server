@@ -32,7 +32,6 @@ RequestMethod strtoMethod(std::string &s) {
 
 int parse_http(char *buffer, RequestPacket *rp) {
   // "GET / HTTP1.1 \r\n"
-  char version[256] = {0};
   int offset = 0;
 
   int len = 0;

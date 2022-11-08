@@ -42,7 +42,7 @@ public:
 
   std::string ip() { return ip_; }
 
-  int port() { return port(); }
+  int port() { return port_; }
 
 private:
   int server_sock_;

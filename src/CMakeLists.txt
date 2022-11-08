@@ -15,6 +15,7 @@ set(WEBSERVER_LIBS
         webserver_http
         webserver_common
         webserver_epoll
+        webserver_config
         )
 
 # target_link_libraries

@@ -3,6 +3,7 @@
 //
 
 #include "http/handler.h"
+#include "common/common.h"
 #include "http/http.h"
 
 HTTPHandler::HTTPHandler(TCPHandler *tcp_handler)
@@ -19,7 +20,5 @@ void HTTPHandler::handle() {
   responsePacket.code_ = StatusCode::OK;
   responsePacket.explain_ = "OK";
   responsePacket.version_ = "HTTP/1.1";
-
-  char resp_buf[BUF_MAX_SIZE];
-
+  char resp_buf[RESPONSE_BUF_MAX_SIZE];
 }

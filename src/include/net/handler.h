@@ -4,11 +4,9 @@
 
 #pragma once
 
+#include "common/common.h"
 #include "connection.h"
 #include "net/connection.h"
-
-// 10k ?
-#define BUF_MAX_SIZE 1024 * 10
 
 class TCPConnection;
 
