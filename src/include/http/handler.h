@@ -1,19 +1,33 @@
-//
-// Created by ciro on 22-10-25.
-//
 #pragma once
 
-#include "net/connection.h"
-#include "net/handler.h"
+#include "common/hashmap.h"
+#include "epoll/epoll.h"
+#include "http/connection.h"
+#include "http/http.h"
+#include "util/util.h"
+#include <cstring>
+#include <fstream>
+#include <memory>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <sys/epoll.h>
+#include <unistd.h>
 
-class HTTPHandler {
+using std::shared_ptr;
+
+extern concurrent_hashmap<int, shared_ptr<connection>> connection_storage;
+
+class handler {
 public:
-  HTTPHandler(TCPHandler *tcp_handler);
-  ~HTTPHandler();
+  static void print_client_info(sockaddr *client_addr,
+                                socklen_t client_addr_len);
 
-  void handle();
+  static void read(int epoll_fd, int conn_fd, shared_ptr<connection> conn);
+  static void write(int epoll_fd, int conn_fd, shared_ptr<connection> conn);
 
 private:
-  TCPHandler *tcp_handler_;
-  TCPConnection *tcp_conn_;
+  static void parse_all(shared_ptr<connection> conn, bool init, int conn_fd);
+
+  static bool _read(int epoll_fd, int conn_fd, shared_ptr<connection> conn);
+  static bool _write(int epoll_fd, int conn_fd, shared_ptr<connection> conn);
 };

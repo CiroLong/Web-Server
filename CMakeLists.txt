@@ -11,9 +11,9 @@ option(WEBSERVER_BUILD_TEST "Build WEBSERVER test (currently not enabled)" OFF) 
 # set include path
 set(WEBSERVER_SRC_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/src/include)
 
+
 # include path at the root level
 include_directories(${WEBSERVER_SRC_INCLUDE_DIR})
-
 
 # add subdirectories
 add_subdirectory(src)

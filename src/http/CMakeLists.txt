@@ -3,7 +3,8 @@ add_library(
         OBJECT
         http.cc
         handler.cc
-        parser/parser.cc)
+        connection.cc
+)
 
 set(ALL_OBJECT_FILES
         ${ALL_OBJECT_FILES} $<TARGET_OBJECTS:webserver_http>

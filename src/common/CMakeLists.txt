@@ -2,6 +2,7 @@ add_library(
         webserver_common
         OBJECT
         common.cc
+        hashmap.cc
 )
 
 set(ALL_OBJECT_FILES
